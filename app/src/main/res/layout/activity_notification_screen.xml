@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F8FF"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visitor Notifications"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#2C4D76"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center" />
+
+    <!-- Notifications List -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/notificationContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Sample Notification Item -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvVisitorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Visitor: Rehan Khan"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#2C4D76" />
+
+                <TextView
+                    android:id="@+id/tvVisitorCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Company: TechSoft Pvt Ltd"
+                    android:textSize="14sp"
+                    android:textColor="#6C7B8A"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/tvVisitorPurpose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Purpose: Client Meeting"
+                    android:textSize="14sp"
+                    android:textColor="#6C7B8A"
+                    android:layout_marginTop="2dp" />
+
+                <TextView
+                    android:id="@+id/tvVisitorTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time: 10:30 AM, 10 Sept 2025"
+                    android:textSize="13sp"
+                    android:textColor="#A1A9B2"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

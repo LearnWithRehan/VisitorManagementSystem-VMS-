@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_gradient">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VISITOR MANAGEMENT SYSTEM"
+        android:textSize="25sp"
+        android:fontFamily="cursive"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+    <!-- Center Logo -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/img"
+        android:contentDescription="App Logo"
+        android:scaleType="fitCenter"/>
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/txtTagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Secure • Track • Welcome"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        android:fontFamily="sans-serif-medium"/>
+
+    <!-- Progress bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="8dp"
+        android:layout_below="@id/txtTagline"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:progressTint="@android:color/white"
+        android:backgroundTint="#50FFFFFF"/>
+
+    <!-- Footer -->
+    <TextView
+        android:id="@+id/txtFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Powered by Petals Infotech"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:alpha="0.8"/>
+
+</RelativeLayout>

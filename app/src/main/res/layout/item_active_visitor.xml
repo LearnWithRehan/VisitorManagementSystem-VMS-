@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="4dp"
+    android:layout_marginTop="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Visitor Photo -->
+        <ImageView
+            android:id="@+id/imgVisitorPhoto"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/rehan"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_bgg"
+            android:padding="6dp" />
+
+        <!-- Visitor Info -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/imgVisitorPhoto"
+            android:layout_marginStart="12dp"
+            android:layout_alignTop="@id/imgVisitorPhoto">
+
+            <TextView
+                android:id="@+id/tvVisitorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rehan"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#2C4D76" />
+
+            <TextView
+                android:id="@+id/tvCheckInTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check-in: 10:45 AM"
+                android:textColor="#6C7B8A"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/tvPurpose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purpose: Meeting"
+                android:textColor="#6C7B8A"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- Checkout Button -->
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check-Out"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:backgroundTint="#E74C3C"
+            android:textColor="#FFFFFF"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/imgVisitorPhoto" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

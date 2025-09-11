@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F8FF"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Visitor"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#2C4D76"
+            android:gravity="center"
+            android:paddingBottom="24dp" />
+
+        <!-- Visitor Name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Name"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginEnd="15dp"
+                android:hint="Enter name"
+                android:background="@drawable/edit_text_bg"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <!-- Mobile -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mobile"
+                android:textSize="20dp"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etMobile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginEnd="15dp"
+                android:maxLength="10"
+                android:hint="Enter number"
+                android:background="@drawable/edit_text_bg"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <!-- Address -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Address"
+                android:textSize="20dp"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginEnd="15dp"
+                android:hint="Enter address"
+                android:background="@drawable/edit_text_bg"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:inputType="textPostalAddress" />
+        </LinearLayout>
+
+        <!-- Company -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Company"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etCompany"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginEnd="15dp"
+                android:hint="Enter company"
+                android:background="@drawable/edit_text_bg"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:inputType="textCapWords" />
+        </LinearLayout>
+
+        <!-- Purpose -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Purpose"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etPurpose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginEnd="15dp"
+                android:hint="Enter purpose"
+                android:background="@drawable/edit_text_bg"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:inputType="textCapSentences" />
+        </LinearLayout>
+
+        <!-- Department Spinner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Department"
+                android:textSize="20dp"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerDepartment"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Person Spinner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Eemployees"
+                android:textColor="#2C4D76"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerEmployee"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edit_text_bg"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Photo -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture Photo"
+            android:textSize="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#2C4D76"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_camera"
+            android:background="@drawable/dotted_border"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"
+            android:layout_marginBottom="24dp" />
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Visitor"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2C4D76"
+            android:padding="14dp"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>
