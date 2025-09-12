@@ -260,13 +260,21 @@ public class AddVisitor extends AppCompatActivity {
         String department = spinnerDepartment.getSelectedItem().toString();
         String employee = spinnerEmployee.getSelectedItem() != null ? spinnerEmployee.getSelectedItem().toString() : "";
 
+        // ✅ Email निकाल रहे हैं selected employee से
+        String employeeEmail = "";
+        if (!employeeList.isEmpty() && spinnerEmployee.getSelectedItemPosition() >= 0) {
+            Employee selectedEmp = employeeList.get(spinnerEmployee.getSelectedItemPosition());
+            employeeEmail = selectedEmp.getEmail();
+        }
+
+
         // ✅ Photo Convert
         String photo = "";
         if (selectedImageBitmap != null) {
             photo = convertImageToBase64(selectedImageBitmap);
         }
 
-        AddVisitorModel visitor = new AddVisitorModel(name, mobile, address, company, purpose, department, employee, photo);
+        AddVisitorModel visitor = new AddVisitorModel(name, mobile, address, company, purpose, department, employee, photo,employeeEmail);
 
         Call<ResponseModel> call = apiService.addVisitor(visitor);
         call.enqueue(new Callback<ResponseModel>() {

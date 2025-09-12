@@ -1,16 +1,10 @@
 package com.example.visitormanagementsys.AddVisitors;
-
 public class AddVisitorModel {
-    private String name;
-    private String mobile;
-    private String address;
-    private String company;
-    private String purpose;
-    private String department;
-    private String employee;
-    private String photo;
+    private String name, mobile, address, company, purpose, department, employee, photo, employeeEmail;
 
-    public AddVisitorModel(String name, String mobile, String address, String company, String purpose, String department, String employee, String photo) {
+    public AddVisitorModel(String name, String mobile, String address, String company,
+                           String purpose, String department, String employee,
+                           String photo, String employeeEmail) {
         this.name = name;
         this.mobile = mobile;
         this.address = address;
@@ -19,7 +13,9 @@ public class AddVisitorModel {
         this.department = department;
         this.employee = employee;
         this.photo = photo;
+        this.employeeEmail = employeeEmail;  // 👈 नया field
     }
+
 
     public String getName() {
         return name;
@@ -83,5 +79,13 @@ public class AddVisitorModel {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getEmployeeEmail() {
+        return employeeEmail;
+    }
+
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
     }
 }
