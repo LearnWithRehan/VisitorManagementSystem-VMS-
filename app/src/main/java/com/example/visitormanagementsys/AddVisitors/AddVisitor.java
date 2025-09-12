@@ -1,5 +1,6 @@
 package com.example.visitormanagementsys.AddVisitors;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -52,6 +53,8 @@ public class AddVisitor extends AppCompatActivity {
     private List<Department> departmentList = new ArrayList<>();
     private List<Employee> employeeList = new ArrayList<>();
 
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,9 @@ public class AddVisitor extends AppCompatActivity {
         apiService = ApiClient.getClient().create(ApiService.class);
 
         DepartmentNameLoad();
+
+
+
 
         // ✅ Button Click
         btnSubmit.setOnClickListener(view -> submitVisitor());
@@ -274,6 +280,12 @@ public class AddVisitor extends AppCompatActivity {
             photo = convertImageToBase64(selectedImageBitmap);
         }
 
+
+        progressDialog = new ProgressDialog(AddVisitor.this);
+        progressDialog.setMessage("Submitting visitor details...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         AddVisitorModel visitor = new AddVisitorModel(name, mobile, address, company, purpose, department, employee, photo,employeeEmail);
 
         Call<ResponseModel> call = apiService.addVisitor(visitor);
@@ -281,6 +293,7 @@ public class AddVisitor extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                  progressDialog.dismiss();
                     Toast.makeText(AddVisitor.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     clearForm();
                 } else {
