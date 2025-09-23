@@ -1,3 +1,4 @@
+
 package com.example.visitormanagementsys.AddVisitors;
 
 import android.app.ProgressDialog;
@@ -293,7 +294,7 @@ public class AddVisitor extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                  progressDialog.dismiss();
+                    progressDialog.dismiss();
                     Toast.makeText(AddVisitor.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     clearForm();
                 } else {

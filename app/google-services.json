@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "205274860022",
+    "firebase_url": "https://visitomansys-default-rtdb.firebaseio.com",
+    "project_id": "visitomansys",
+    "storage_bucket": "visitomansys.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205274860022:android:ede60f63643a744dd71fd7",
+        "android_client_info": {
+          "package_name": "com.example.visitormanagementsys"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7F1AolKG-EoVY8sKdTfDU_6yiaoW7yeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

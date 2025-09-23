@@ -1,6 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
+    kotlin("android")
+    alias(libs.plugins.google.gms.google.services)
 }
+
 
 android {
     namespace = "com.example.visitormanagementsys"
@@ -32,7 +35,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -41,7 +43,16 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation ("com.google.code.gson:gson:2.9.1")
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    // ✅ Retrofit + Gson
+    implementation("com.google.code.gson:gson:2.9.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // ✅ Firebase (BOM ensures version alignment)
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-analytics") // 👈 optional but recommended (for logs)
+
+
+    implementation ("com.google.firebase:firebase-messaging:23.3.2")
 }

@@ -12,4 +12,11 @@ public interface ApiService {
             @Field("username") String username,
             @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("save_token.php")
+    Call<ApiResponse> saveFcmToken(
+            @Field("user_id") int userId,
+            @Field("fcm_token") String fcmToken
+    );
 }
