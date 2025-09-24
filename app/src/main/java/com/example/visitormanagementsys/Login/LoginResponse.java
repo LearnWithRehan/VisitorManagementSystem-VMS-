@@ -1,6 +1,5 @@
 package com.example.visitormanagementsys.Login;
 
-
 import com.google.gson.annotations.SerializedName;
 
 public class LoginResponse {
@@ -23,6 +22,11 @@ public class LoginResponse {
 
     public Data getData() {
         return data;
+    }
+
+    // 👇 Helper method add kiya
+    public String getUserId() {
+        return data != null ? data.getId() : null;
     }
 
     public static class Data {

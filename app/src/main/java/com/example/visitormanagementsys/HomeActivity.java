@@ -1,6 +1,7 @@
 package com.example.visitormanagementsys;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.visitormanagementsys.AddVisitors.AddVisitor;
 import com.example.visitormanagementsys.Login.Login_Screen;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class HomeActivity extends AppCompatActivity {
     LinearLayout addVisitor, activeVisitors, historyReports, settingsProfile, qrGeneration, notification;
@@ -34,6 +36,13 @@ public class HomeActivity extends AppCompatActivity {
         qrGeneration.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
         notification.setOnClickListener(v -> openScreen(NotificationScreen.class));
         gateCodeBtn.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
+
+
+        //SharedPreferences prefs = getSharedPreferences("EmployeePrefs", MODE_PRIVATE);
+      //  String employeeName = prefs.getString("employee_name", "Employee");
+
+
+
 
     }
 

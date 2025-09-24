@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
 }
 
-
 android {
     namespace = "com.example.visitormanagementsys"
     compileSdk = 35
@@ -28,9 +27,23 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    // ✅ Packaging block to exclude META-INF files causing warnings
+    packaging {
+        resources {
+            excludes += listOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/DEPENDENCIES",
+                "META-INF/io.netty.versions.properties",
+                "META-INF/LICENSE",
+                "META-INF/NOTICE"
+            )
+        }
     }
 }
 
@@ -39,6 +52,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.appdistribution.gradle)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -51,8 +65,8 @@ dependencies {
     // ✅ Firebase (BOM ensures version alignment)
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-messaging")
-    implementation("com.google.firebase:firebase-analytics") // 👈 optional but recommended (for logs)
+    implementation("com.google.firebase:firebase-analytics") // optional
 
-
-    implementation ("com.google.firebase:firebase-messaging:23.3.2")
+    // Explicit version for firebase-messaging
+    implementation("com.google.firebase:firebase-messaging:23.3.2")
 }

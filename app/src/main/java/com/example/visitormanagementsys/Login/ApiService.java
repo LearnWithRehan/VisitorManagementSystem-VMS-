@@ -13,10 +13,19 @@ public interface ApiService {
             @Field("password") String password
     );
 
+//    @FormUrlEncoded
+//    @POST("save_token.php")
+//    Call<ApiResponse> saveFcmToken(
+//            @Field("user_id") int userId,
+//            @Field("fcm_token") String fcmToken
+//    );
+//
+
     @FormUrlEncoded
     @POST("save_token.php")
     Call<ApiResponse> saveFcmToken(
-            @Field("user_id") int userId,
+            @Field("visitor_id") int visitorId, // ✅ Same as PHP
             @Field("fcm_token") String fcmToken
     );
+
 }

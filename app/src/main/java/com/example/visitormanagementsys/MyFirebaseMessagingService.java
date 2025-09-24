@@ -1,4 +1,4 @@
-package com.example.visitormanagementsys;
+package com.example.visitormanagementsys.fcm;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,82 +10,83 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
-import com.example.visitormanagementsys.Login.Login_Screen;
+import com.example.visitormanagementsys.HomeActivity;
+import com.example.visitormanagementsys.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "FCMService";
-    private static final String CHANNEL_ID = "visitor_notifications";
 
     @Override
-    public void onNewToken(@NonNull String token) {
+    public void onNewToken(String token) {
         super.onNewToken(token);
-        Log.d(TAG, "FCM Token: " + token);
-        // Yaha token server pe send karna ho to call karo
+        Log.d(TAG, "New FCM Token: " + token);
+
+        // TODO: Retrofit call to save token in fcm_tokens table
+        // Example: ApiService.saveFcmToken(userId, token)
     }
 
     @Override
-    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+    public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Log.d(TAG, "Received message from: " + remoteMessage.getFrom());
+        Log.d(TAG, "Notification: " + remoteMessage.getNotification());
+        Log.d(TAG, "Data: " + remoteMessage.getData());
 
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-            sendNotification(remoteMessage.getData().get("name"),
-                    remoteMessage.getData().get("mobile"),
-                    remoteMessage.getData().get("address"),
-                    remoteMessage.getData().get("company"),
-                    remoteMessage.getData().get("purpose"),
-                    remoteMessage.getData().get("department"),
-                    remoteMessage.getData().get("employee"),
-                    remoteMessage.getData().get("status"));
+        // Notification payload
+        if (remoteMessage.getNotification() != null) {
+            String title = remoteMessage.getNotification().getTitle();
+            String body  = remoteMessage.getNotification().getBody();
+            showNotification(title, body, remoteMessage.getData());
         }
 
-        if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+        // Data payload (optional, for additional info)
+        if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Data Payload: " + remoteMessage.getData());
         }
     }
 
-    private void sendNotification(String name, String mobile, String address, String company,
-                                  String purpose, String department, String employee, String status) {
-
-        Intent intent = new Intent(this, Login_Screen.class);
+    private void showNotification(String title, String message, Map<String, String> data) {
+        Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
+        // Optional: pass extra data to HomeActivity
+        for (Map.Entry<String, String> entry : data.entrySet()) {
+            intent.putExtra(entry.getKey(), entry.getValue());
+        }
 
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        String channelId = "visitor_status_channel";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        String contentText = "Visitor: " + name + "\nMobile: " + mobile + "\nAddress: " + address +
-                "\nCompany: " + company + "\nPurpose: " + purpose + "\nDepartment: " + department +
-                "\nHandled by: " + employee + "\nStatus: " + status;
 
         NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_notification) // your app icon
-                        .setContentTitle("Visitor " + status)
-                        .setContentText(name + " - " + purpose)
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText(contentText))
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.drawable.ic_notification)
+                        .setContentTitle(title)
+                        .setContentText(message)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent)
-                        .setPriority(NotificationCompat.PRIORITY_HIGH);
+                        .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        // For Android O and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    "Visitor Notifications",
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    "Visitor Status Notifications",
                     NotificationManager.IMPORTANCE_HIGH);
             notificationManager.createNotificationChannel(channel);
         }
 
-        notificationManager.notify((int) System.currentTimeMillis(), notificationBuilder.build());
+        notificationManager.notify(0, notificationBuilder.build());
     }
 }
