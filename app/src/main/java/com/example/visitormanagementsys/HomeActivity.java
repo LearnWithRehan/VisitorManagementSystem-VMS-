@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.visitormanagementsys.ActiveVisit.ActiveVisitor;
 import com.example.visitormanagementsys.AddVisitors.AddVisitor;
 import com.example.visitormanagementsys.Login.Login_Screen;
+import com.example.visitormanagementsys.Report.ReportActivity;
 
 public class HomeActivity extends AppCompatActivity {
     LinearLayout addVisitor, activeVisitors, historyReports, settingsProfile, qrGeneration, notification;

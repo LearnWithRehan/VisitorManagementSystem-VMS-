@@ -32,7 +32,7 @@
             android:name=".SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".ReportActivity"
+            android:name=".Report.ReportActivity"
             android:exported="false" />
         <activity
             android:name=".ActiveVisit.ActiveVisitor"
