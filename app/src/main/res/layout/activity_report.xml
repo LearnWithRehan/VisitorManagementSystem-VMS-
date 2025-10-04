@@ -1,109 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F4FF"
+    android:background="#E8F0FE"
     android:padding="16dp">
 
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/visitors_report"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#1E3A8A"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Date Range Container -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2"
+        android:layout_marginBottom="16dp">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/visitors_report"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#2C4D76"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Date Range Container -->
+        <!-- From Date -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/layoutFromDate"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:background="@drawable/bg_input_rounded"
+            android:padding="10dp"
+            android:orientation="vertical"
             android:gravity="center"
-            android:weightSum="2"
-            android:layout_marginBottom="16dp">
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="8dp">
 
-            <!-- From Date -->
-            <LinearLayout
-                android:id="@+id/layoutFromDate"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_input"
-                android:padding="10dp"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:text="From Date"
+                android:textStyle="bold"
+                android:textColor="#1E3A8A" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="From Date"
-                    android:textStyle="bold"
-                    android:textColor="#2C4D76" />
-
-                <TextView
-                    android:id="@+id/tvFromDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select Date"
-                    android:textColor="#555"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
-
-            <!-- To Date -->
-            <LinearLayout
-                android:id="@+id/layoutToDate"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tvFromDate"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bg_input"
-                android:padding="10dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginStart="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="To Date"
-                    android:textStyle="bold"
-                    android:textColor="#2C4D76" />
-
-                <TextView
-                    android:id="@+id/tvToDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Select Date"
-                    android:textColor="#555"
-                    android:layout_marginTop="4dp" />
-            </LinearLayout>
+                android:text="Select Date"
+                android:textColor="#6B7280"
+                android:layout_marginTop="6dp"
+                android:textSize="16sp"/>
         </LinearLayout>
 
-        <!-- Report Button -->
-        <Button
-            android:id="@+id/btnGenerateReport"
-            android:layout_width="match_parent"
+        <!-- To Date -->
+        <LinearLayout
+            android:id="@+id/layoutToDate"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Show Report"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#2C4D76"
-            android:layout_marginBottom="16dp" />
+            android:layout_weight="1"
+            android:background="@drawable/bg_input_rounded"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="8dp">
 
-        <!-- RecyclerView -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To Date"
+                android:textStyle="bold"
+                android:textColor="#1E3A8A" />
+
+            <TextView
+                android:id="@+id/tvToDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Date"
+                android:textColor="#6B7280"
+                android:layout_marginTop="6dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#D1D5DB"
+        android:layout_marginTop="0dp"/>
+
+    <!-- Report Button -->
+    <Button
+        android:id="@+id/btnGenerateReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Report"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:layout_marginTop="3dp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1E3A8A"
+        android:layout_marginBottom="6dp"
+        android:elevation="4dp"
+        android:padding="12dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#D1D5DB"
+        android:layout_marginTop="0dp"/>
+    <!-- RecyclerView with Horizontal Divider below -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerReport"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="24dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:paddingBottom="8dp"/>
+
+        <!-- Horizontal Divider -->
+
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>
