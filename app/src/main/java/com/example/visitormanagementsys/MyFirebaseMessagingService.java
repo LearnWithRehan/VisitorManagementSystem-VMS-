@@ -1,4 +1,4 @@
-package com.example.visitormanagementsys.fcm;
+package com.example.visitormanagementsys;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

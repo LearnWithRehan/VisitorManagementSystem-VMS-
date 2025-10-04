@@ -35,7 +35,7 @@
             android:name=".ReportActivity"
             android:exported="false" />
         <activity
-            android:name=".ActiveVisitor"
+            android:name=".ActiveVisit.ActiveVisitor"
             android:exported="false" />
         <activity
             android:name=".AddVisitors.AddVisitor"
@@ -66,7 +66,7 @@
             android:exported="false" />
 
         <service
-            android:name=".fcm.MyFirebaseMessagingService"
+            android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tvVisitorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvVisitorMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile" />
+
+        <TextView
+            android:id="@+id/tvVisitorAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address" />
+
+        <TextView
+            android:id="@+id/tvVisitorCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company" />
+
+        <TextView
+            android:id="@+id/tvVisitorPurpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Purpose" />
+
+        <TextView
+            android:id="@+id/tvVisitorDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Department" />
+
+        <TextView
+            android:id="@+id/tvVisitorEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employee" />
+
+        <TextView
+            android:id="@+id/tvVisitorEntryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entry Date" />
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
