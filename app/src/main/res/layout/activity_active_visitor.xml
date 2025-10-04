@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F8FF"
+    android:background="#F0F4FF"
     android:padding="16dp">
 
     <!-- Screen Title -->
@@ -11,11 +11,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Active Visitors"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="#2C4D76"
+        android:textColor="#1E3A8A"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp" />
+
+    <!-- Divider under title -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#D1D5DB"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginBottom="12dp"/>
 
     <!-- RecyclerView for visitors -->
     <androidx.recyclerview.widget.RecyclerView
@@ -25,6 +33,5 @@
         android:layout_below="@id/tvTitle"
         android:layout_marginTop="12dp"
         android:clipToPadding="false"
-        android:paddingBottom="24dp" />
-
+        android:paddingBottom="24dp"/>
 </RelativeLayout>

@@ -4,17 +4,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.visitormanagementsys.ApiClient;
 import com.example.visitormanagementsys.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,14 +22,19 @@ public class ActiveVisitor extends AppCompatActivity {
     private static final String TAG = "ActiveVisitor";
     private RecyclerView recyclerView;
     private VisitorAdapter adapter;
+    private List<VisitorModel> visitorList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_visitor);
 
-
         recyclerView = findViewById(R.id.recyclerActiveVisitors);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Initialize adapter with empty list
+        adapter = new VisitorAdapter(this, visitorList);
+        recyclerView.setAdapter(adapter);
 
         fetchActiveVisitors();
     }
@@ -50,24 +52,28 @@ public class ActiveVisitor extends AppCompatActivity {
                         if (visitors.isEmpty()) {
                             Toast.makeText(ActiveVisitor.this, "No visitor found", Toast.LENGTH_SHORT).show();
                         } else {
-                            adapter = new VisitorAdapter(visitors);
-                            recyclerView.setAdapter(adapter);
+                            // Clear the old list and add new data
+                            visitorList.clear();
+                            visitorList.addAll(visitors);
+
+                            // Notify adapter about data changes
+                            adapter.notifyDataSetChanged();
                         }
-                        Log.d("API", "Visitors size: " + visitors.size());
+                        Log.d(TAG, "Visitors size: " + visitors.size());
                     } else {
                         Toast.makeText(ActiveVisitor.this, "API returned failure", Toast.LENGTH_SHORT).show();
-                        Log.d("API", "API returned failure");
+                        Log.d(TAG, "API returned failure");
                     }
                 } else {
                     Toast.makeText(ActiveVisitor.this, "Response failed", Toast.LENGTH_SHORT).show();
-                    Log.d("API", "Response failed: " + response.message());
+                    Log.d(TAG, "Response failed: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<VisitorApiResponse> call, Throwable t) {
                 Toast.makeText(ActiveVisitor.this, "Failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("API", "onFailure", t);
+                Log.e(TAG, "onFailure", t);
             }
         });
     }
