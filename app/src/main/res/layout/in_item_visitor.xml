@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_input"
+    android:elevation="3dp">
+
+    <!-- Visitor ID -->
+    <TextView
+        android:id="@+id/tvVisitorIdr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visitor ID: "
+        android:textStyle="bold"
+        android:textColor="#2C4D76"
+        android:textSize="16sp" />
+
+    <!-- Name -->
+    <TextView
+        android:id="@+id/tvNamer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: "
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <!-- Mobile -->
+    <TextView
+        android:id="@+id/tvMobiler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Address -->
+    <TextView
+        android:id="@+id/tvAddressr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Company -->
+    <TextView
+        android:id="@+id/tvCompanyr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Purpose -->
+    <TextView
+        android:id="@+id/tvPurposer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purpose: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Department -->
+    <TextView
+        android:id="@+id/tvDepartmentr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Department: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Employee -->
+    <TextView
+        android:id="@+id/tvEmployeer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Employee: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/tvStatusr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: "
+        android:textColor="#555"
+        android:textSize="14sp" />
+
+    <!-- Entry Date -->
+    <TextView
+        android:id="@+id/tvEntryDater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entry Date: "
+        android:textColor="#2C4D76"
+        android:textSize="14sp"
+        android:layout_marginBottom="4dp" />
+
+</LinearLayout>

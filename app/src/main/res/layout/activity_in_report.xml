@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutInReport"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F8"
+    tools:context=".Report.InReportActivity">
+
+    <!-- Header Title -->
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IN VISITOR REPORT"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#2C4D76"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="#E1EAF5"
+        android:elevation="4dp" />
+
+    <!-- Horizontal line -->
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_below="@id/tvHeader"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#C0C0C0" />
+
+    <!-- Generate PDF Button -->
+    <Button
+        android:id="@+id/btnInGeneratePdf"
+        android:layout_below="@id/horizontalLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generate PDF"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#2C4D76"
+        android:textColor="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:elevation="4dp" />
+
+    <!-- Vertical RecyclerView for visitor list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@id/btnInGeneratePdf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:paddingBottom="10dp"
+        tools:listitem="@layout/in_item_visitor" />
+
+    <!-- ProgressBar for loading -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

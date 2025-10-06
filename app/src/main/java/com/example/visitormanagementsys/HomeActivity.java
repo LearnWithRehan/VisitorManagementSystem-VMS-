@@ -11,6 +11,7 @@ import com.example.visitormanagementsys.ActiveVisit.ActiveVisitor;
 import com.example.visitormanagementsys.AddVisitors.AddVisitor;
 import com.example.visitormanagementsys.Login.Login_Screen;
 import com.example.visitormanagementsys.Report.ReportActivity;
+import com.example.visitormanagementsys.Report.Report_Selection;
 
 public class HomeActivity extends AppCompatActivity {
     LinearLayout addVisitor, activeVisitors, historyReports, settingsProfile, qrGeneration, notification;
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         // Click Listeners
         addVisitor.setOnClickListener(v -> openScreen(AddVisitor.class));
         activeVisitors.setOnClickListener(v -> openScreen(ActiveVisitor.class));
-        historyReports.setOnClickListener(v -> openScreen(ReportActivity.class));
+        historyReports.setOnClickListener(v -> openScreen(Report_Selection.class));
         settingsProfile.setOnClickListener(v -> openScreen(SettingActivity.class));
         qrGeneration.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
         notification.setOnClickListener(v -> openScreen(NotificationScreen.class));
