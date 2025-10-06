@@ -69,4 +69,7 @@ dependencies {
 
     // Explicit version for firebase-messaging
     implementation("com.google.firebase:firebase-messaging:23.3.2")
+
+    //pdf
+    implementation ("com.itextpdf:itext7-core:7.2.3");
 }
