@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.visitormanagementsys.ActiveVisit.ActiveVisitor;
 import com.example.visitormanagementsys.AddVisitors.AddVisitor;
 import com.example.visitormanagementsys.Login.Login_Screen;
-import com.example.visitormanagementsys.Report.ReportActivity;
+import com.example.visitormanagementsys.QRCODE.GenerateQRCodeSCreen;
 import com.example.visitormanagementsys.Report.Report_Selection;
 
 public class HomeActivity extends AppCompatActivity {
