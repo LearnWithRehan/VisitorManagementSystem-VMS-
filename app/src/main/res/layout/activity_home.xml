@@ -175,7 +175,33 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="QR Generation"
+                    android:text="QR Generator"
+                    android:textSize="16sp"
+                    android:textColor="#2C4D76"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center" />
+            </LinearLayout>
+            <!-- QR SCANNER -->
+            <LinearLayout
+                android:id="@+id/scanqrcode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center"
+                android:background="@drawable/card_bg">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/qrscanner"
+                    app:tint="#2C4D76" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QR Scanner"
                     android:textSize="16sp"
                     android:textColor="#2C4D76"
                     android:layout_marginTop="8dp"

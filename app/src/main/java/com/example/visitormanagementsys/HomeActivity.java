@@ -12,9 +12,10 @@ import com.example.visitormanagementsys.AddVisitors.AddVisitor;
 import com.example.visitormanagementsys.Login.Login_Screen;
 import com.example.visitormanagementsys.QRCODE.GenerateQRCodeSCreen;
 import com.example.visitormanagementsys.Report.Report_Selection;
+import com.example.visitormanagementsys.SCANQR.ScanQRCodeActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    LinearLayout addVisitor, activeVisitors, historyReports, settingsProfile, qrGeneration, notification;
+    LinearLayout addVisitor, activeVisitors, historyReports, settingsProfile, qrGeneration,qrScanner, notification;
     Button gateCodeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         historyReports = findViewById(R.id.historyReports);
         settingsProfile = findViewById(R.id.settingsProfile);
         qrGeneration = findViewById(R.id.qrGeneration);
+        qrScanner = findViewById(R.id.scanqrcode);
         notification = findViewById(R.id.notification);
         gateCodeBtn = findViewById(R.id.gateCodeBtn);
 
@@ -35,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         historyReports.setOnClickListener(v -> openScreen(Report_Selection.class));
         settingsProfile.setOnClickListener(v -> openScreen(SettingActivity.class));
         qrGeneration.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
+        qrScanner.setOnClickListener(v -> openScreen(ScanQRCodeActivity.class));
         notification.setOnClickListener(v -> openScreen(NotificationScreen.class));
         gateCodeBtn.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
 

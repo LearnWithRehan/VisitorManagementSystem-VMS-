@@ -26,6 +26,9 @@
         android:theme="@style/Theme.VisitorManagementSys"
         tools:targetApi="31">
         <activity
+            android:name=".SCANQR.ScanQRCodeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Report.InReportActivity"
             android:exported="false" />
         <activity
@@ -74,6 +77,8 @@
             android:name=".MainActivity"
             android:exported="false" />
 
+
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -91,6 +96,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
     </application>
 
 </manifest>
