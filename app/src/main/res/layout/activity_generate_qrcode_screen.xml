@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F5F8FF"
     android:padding="16dp">
 
@@ -9,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+
 
         <!-- Title -->
         <TextView
@@ -21,73 +24,175 @@
             android:layout_gravity="center"
             android:layout_marginBottom="24dp" />
 
-        <!-- Name -->
-        <EditText
-            android:id="@+id/etName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Full Name"
-            android:inputType="textPersonName"
-            android:background="@drawable/card_bg"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp" />
+            android:padding="10dp"
+            android:orientation="horizontal">
 
-        <!-- Email -->
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Email"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/card_bg"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-        <!-- Address -->
-        <EditText
-            android:id="@+id/etAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Address"
-            android:inputType="textPostalAddress"
-            android:background="@drawable/card_bg"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp" />
+            <!-- Name -->
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Full Name"
+                android:layout_marginStart="10dp"
+                android:inputType="textPersonName"
+                android:background="@drawable/card_bg"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
 
-        <!-- Purpose -->
-        <EditText
-            android:id="@+id/etPurpose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Purpose of Visit"
-            android:inputType="text"
-            android:background="@drawable/card_bg"
-            android:padding="12dp"
-            android:layout_marginBottom="12dp" />
+        </LinearLayout>
 
-        <!-- Company -->
-        <EditText
-            android:id="@+id/etCompany"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Company Name"
-            android:inputType="text"
-            android:background="@drawable/card_bg"
-            android:padding="12dp"
-            android:layout_marginBottom="20dp" />
 
-        <!-- Generate Button -->
-        <Button
-            android:id="@+id/btnGenerateQR"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Generate QR Code"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#2C4D76"
-            android:padding="14dp"
-            android:layout_marginBottom="24dp" />
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <!-- Email -->
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Email"
+                android:layout_marginStart="10dp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/card_bg"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
+
+        </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="10dp"
+           android:orientation="horizontal">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Address"
+               android:textSize="20sp"
+               android:textStyle="bold"/>
+           <!-- Address -->
+           <EditText
+               android:id="@+id/etAddress"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Enter Address"
+               android:layout_marginStart="10dp"
+               android:inputType="textPostalAddress"
+               android:background="@drawable/card_bg"
+               android:padding="12dp"
+               android:layout_marginBottom="12dp" />
+       </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="10dp"
+          android:orientation="horizontal">
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Purpose"
+              android:textSize="20sp"
+              android:textStyle="bold"/>
+          <!-- Purpose -->
+          <EditText
+              android:id="@+id/etPurpose"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Enter Purpose of Visit"
+              android:inputType="text"
+              android:layout_marginStart="10dp"
+              android:background="@drawable/card_bg"
+              android:padding="12dp"
+              android:layout_marginBottom="12dp" />
+      </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    <!-- Company -->
+    <EditText
+        android:id="@+id/etCompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Company Name"
+        android:inputType="text"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/card_bg"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp" />
+</LinearLayout>
+
+
+<!--        &lt;!&ndash; Generate Button &ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/btnGenerateQR"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Generate QR Code"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:backgroundTint="#2C4D76"-->
+<!--            android:padding="14dp"-->
+<!--            android:layout_marginBottom="24dp" />-->
+
+        <LinearLayout
+            android:id="@+id/btnGenerateQRCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/card_bg">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_qrcode"
+                app:tint="#2C4D76" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QR Generator"
+                android:textSize="16sp"
+                android:textColor="#2C4D76"
+                android:layout_marginTop="8dp"
+                android:gravity="center" />
+        </LinearLayout>
 
         <!-- QR Code Preview -->
         <ImageView

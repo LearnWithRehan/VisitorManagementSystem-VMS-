@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,8 +36,9 @@ import retrofit2.Response;
 public class GenerateQRCodeSCreen extends AppCompatActivity {
 
     private EditText etName, etEmail, etAddress, etPurpose, etCompany;
-    private Button btnGenerateQR;
+  //  private Button btnGenerateQR;
     private ImageView imgQrCode;
+    private LinearLayout btnGenerateQR;
 
     private QRApiService apiService;
     private ProgressDialog progressDialog;
@@ -51,7 +53,7 @@ public class GenerateQRCodeSCreen extends AppCompatActivity {
         etAddress = findViewById(R.id.etAddress);
         etPurpose = findViewById(R.id.etPurpose);
         etCompany = findViewById(R.id.etCompany);
-        btnGenerateQR = findViewById(R.id.btnGenerateQR);
+        btnGenerateQR = findViewById(R.id.btnGenerateQRCode);
         imgQrCode = findViewById(R.id.imgQrCode);
 
         apiService = ApiClient.getClient().create(QRApiService.class);
