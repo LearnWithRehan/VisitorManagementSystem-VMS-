@@ -1,9 +1,11 @@
 package com.example.visitormanagementsys.QRCODE;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.visitormanagementsys.ApiClient;
+import com.example.visitormanagementsys.HomeActivity;
+import com.example.visitormanagementsys.MainActivity;
 import com.example.visitormanagementsys.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -52,9 +56,8 @@ public class GenerateQRCodeSCreen extends AppCompatActivity {
 
         apiService = ApiClient.getClient().create(QRApiService.class);
 
-        // Initialize ProgressDialog
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Generating QR and sending email...");
+        progressDialog.setMessage("Processing, please wait...");
         progressDialog.setCancelable(false);
 
         btnGenerateQR.setOnClickListener(v -> generateAndSendQR());
@@ -67,32 +70,32 @@ public class GenerateQRCodeSCreen extends AppCompatActivity {
         String purpose = etPurpose.getText().toString().trim();
         String company = etCompany.getText().toString().trim();
 
+        // ✅ Field validation
         if (name.isEmpty() || email.isEmpty() || address.isEmpty() || purpose.isEmpty() || company.isEmpty()) {
             Toast.makeText(this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Show progress dialog
-        progressDialog.show();
+        // ✅ Email validation: must be proper Gmail address
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || !email.endsWith("@gmail.com")) {
+            etEmail.setError("Enter a valid Gmail address");
+            etEmail.requestFocus();
+            return;
+        }
 
         // Combine data for QR
         String qrData = "Name: " + name + "\nEmail: " + email + "\nAddress: " + address +
                 "\nPurpose: " + purpose + "\nCompany: " + company;
 
         try {
-            // Generate QR code
             Bitmap qrBitmap = generateQRCode(qrData);
             imgQrCode.setImageBitmap(qrBitmap);
             imgQrCode.setVisibility(View.VISIBLE);
 
-            // Convert to Base64
             String encodedQR = encodeToBase64(qrBitmap);
-
-            // Send data to server (which will send email)
             sendDataToServer(name, email, address, purpose, company, encodedQR);
 
         } catch (WriterException e) {
-            progressDialog.dismiss();
             e.printStackTrace();
             Toast.makeText(this, "QR generation failed!", Toast.LENGTH_SHORT).show();
         }
@@ -122,23 +125,38 @@ public class GenerateQRCodeSCreen extends AppCompatActivity {
     }
 
     private void sendDataToServer(String name, String email, String address, String purpose, String company, String encodedQR) {
+        progressDialog.show();
+
         Call<QRApiResponse> call = apiService.sendVisitorDetails(name, email, address, purpose, company, encodedQR);
 
         call.enqueue(new Callback<QRApiResponse>() {
             @Override
             public void onResponse(Call<QRApiResponse> call, Response<QRApiResponse> response) {
-                progressDialog.dismiss(); // dismiss progress dialog
+                progressDialog.dismiss();
+
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(GenerateQRCodeSCreen.this, "Email Sent: " + response.body().getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(GenerateQRCodeSCreen.this,
+                            "✅ QR sent successfully! " + response.body().getMessage(),
+                            Toast.LENGTH_LONG).show();
+
+                    // 🔹 Navigate to Home screen after success
+                    Intent intent = new Intent(GenerateQRCodeSCreen.this, HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(GenerateQRCodeSCreen.this, "Failed: Invalid response", Toast.LENGTH_LONG).show();
+                    Toast.makeText(GenerateQRCodeSCreen.this,
+                            "❌ Failed: Invalid response",
+                            Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<QRApiResponse> call, Throwable t) {
-                progressDialog.dismiss(); // dismiss progress dialog
-                Toast.makeText(GenerateQRCodeSCreen.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+                Toast.makeText(GenerateQRCodeSCreen.this,
+                        "⚠️ Error: " + t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
