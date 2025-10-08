@@ -3,6 +3,7 @@ package com.example.visitormanagementsys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.example.visitormanagementsys.SCANQR.ScanQRCodeActivity;
 public class HomeActivity extends AppCompatActivity {
     LinearLayout addVisitor, activeVisitors, historyReports, settingsProfile, qrGeneration,qrScanner, notification;
     Button gateCodeBtn;
+    ImageView imgprofilepic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,9 @@ public class HomeActivity extends AppCompatActivity {
         qrScanner = findViewById(R.id.scanqrcode);
         notification = findViewById(R.id.notification);
         gateCodeBtn = findViewById(R.id.gateCodeBtn);
+        imgprofilepic = findViewById(R.id.imgprofilepic);
+
+        imgprofilepic.setOnClickListener(v -> openScreen(SettingActivity.class));
 
         // Click Listeners
         addVisitor.setOnClickListener(v -> openScreen(AddVisitor.class));

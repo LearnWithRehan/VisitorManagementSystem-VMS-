@@ -74,18 +74,27 @@ public class Login_Screen extends AppCompatActivity {
                     if (response.body().isStatus()) {
                         Toast.makeText(Login_Screen.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
-                        if (response.body().isStatus()) {
-                            int visitorId = Integer.parseInt(response.body().getUserId()); // ya phir response.body().getVisitorId()
-                            saveFcmToken(visitorId); // ✅ Token save immediately
-                        }
+                        // ✅ Extract data from API response
+                        String userId = response.body().getData().getId();
+                        String username = response.body().getData().getUsername();
+                        String email = response.body().getData().getEmail();
 
+                        // ✅ Save in SharedPreferences for ProfileActivity
+                        SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("user_id", userId);
+                        editor.putString("username", username);
+                        editor.putString("email", email);
+                        editor.apply();
 
-                        // Go to HomeActivity
+                        // ✅ (Optional) Save FCM token using your existing method
+                        saveFcmToken(Integer.parseInt(userId));
+
+                        // ✅ Move to Home or Profile
                         startActivity(new Intent(Login_Screen.this, HomeActivity.class));
                         finish();
-                    } else {
-                        Toast.makeText(Login_Screen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
+
                 } else {
                     Toast.makeText(Login_Screen.this, "Login failed! Try again.", Toast.LENGTH_SHORT).show();
                 }
