@@ -1,6 +1,7 @@
 package com.example.visitormanagementsys.AddVisitors;
 
 import com.example.visitormanagementsys.Login.ApiResponse;
+import com.example.visitormanagementsys.SCANQR.AddVisitorModelscan;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,6 +16,10 @@ public interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("addVisitor.php")  // PHP API ka naam
     Call<ResponseModel> addVisitor(@Body AddVisitorModel visitor);
+
+    @Headers("Content-Type: application/json")
+    @POST("addVisitorbyqrcode.php")  // PHP API ka naam
+    Call<ResponseModel> addVisitorscan(@Body AddVisitorModelscan visitor);
 
     @GET("getDepartments.php")
     Call<DepartmentResponse> getDepartments();

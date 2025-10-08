@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,17 +25,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.visitormanagementsys.AddVisitors.AddVisitor;
+import com.example.visitormanagementsys.AddVisitors.AddVisitorModel;
 import com.example.visitormanagementsys.AddVisitors.ApiService;
 import com.example.visitormanagementsys.AddVisitors.Department;
 import com.example.visitormanagementsys.AddVisitors.DepartmentRequest;
 import com.example.visitormanagementsys.AddVisitors.DepartmentResponse;
 import com.example.visitormanagementsys.AddVisitors.Employee;
 import com.example.visitormanagementsys.AddVisitors.EmployeeResponse;
+import com.example.visitormanagementsys.AddVisitors.ResponseModel;
 import com.example.visitormanagementsys.ApiClient;   // ✅ important import added
 import com.example.visitormanagementsys.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +60,7 @@ public class ScanQRCodeActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
   //  private Button btnStartScan;
     private EditText etScannedName, etScannedEmail, etScannedAddress, etScannedPurpose, etScannedCompany, etScannedRaw;
+    Button btnSubmit;
     LinearLayout btnStartScan;
     // ✅ Modern permission launcher
     private final ActivityResultLauncher<String> requestPermissionLauncher =
@@ -82,12 +88,15 @@ public class ScanQRCodeActivity extends AppCompatActivity {
         spinnerDepartment = findViewById(R.id.spinnerDepartments);
         spinnerEmployee = findViewById(R.id.spinnerEmployees);
         imgPhoto = findViewById(R.id.imgPhotos);
+        btnSubmit = findViewById(R.id.btnSubmits);
 
         // ✅ Initialize Retrofit Service (this line is the main fix)
         apiService = ApiClient.getClient().create(ApiService.class);
 
         // ✅ Load departments initially
         DepartmentNameLoad();
+        // ✅ Button Click
+        btnSubmit.setOnClickListener(view -> submitVisitor());
 
         btnStartScan.setOnClickListener(v -> {
             if (checkCameraPermission()) {
@@ -134,6 +143,154 @@ public class ScanQRCodeActivity extends AppCompatActivity {
                 openCamera();
             }
         });
+    }
+
+    // ✅ Submit Visitor
+    private void submitVisitor() {
+        if (!validateInputs()) {
+            return; // Agar validation fail hua to API call hi mat karo
+        }
+        String name = etScannedName.getText().toString().trim();
+        String email = etScannedEmail.getText().toString().trim();
+        String address = etScannedAddress.getText().toString().trim();
+        String company = etScannedCompany.getText().toString().trim();
+        String purpose = etScannedPurpose.getText().toString().trim();
+
+        String department = spinnerDepartment.getSelectedItem().toString();
+        String employee = spinnerEmployee.getSelectedItem() != null ? spinnerEmployee.getSelectedItem().toString() : "";
+
+        // ✅ Email निकाल रहे हैं selected employee से
+        String employeeEmail = "";
+        if (!employeeList.isEmpty() && spinnerEmployee.getSelectedItemPosition() >= 0) {
+            Employee selectedEmp = employeeList.get(spinnerEmployee.getSelectedItemPosition());
+            employeeEmail = selectedEmp.getEmail();
+        }
+
+
+        // ✅ Photo Convert
+        String photo = "";
+        if (selectedImageBitmap != null) {
+            photo = convertImageToBase64(selectedImageBitmap);
+        }
+
+
+        progressDialog = new ProgressDialog(ScanQRCodeActivity.this);
+        progressDialog.setMessage("Submitting visitor details...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        AddVisitorModelscan visitor = new AddVisitorModelscan(name, email, address, company, purpose, department, employee, photo,employeeEmail);
+
+        Call<ResponseModel> call = apiService.addVisitorscan(visitor);
+        call.enqueue(new Callback<ResponseModel>() {
+            @Override
+            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    progressDialog.dismiss();
+                    Toast.makeText(ScanQRCodeActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    clearForm();
+                } else {
+                    Toast.makeText(ScanQRCodeActivity.this, "Failed to add visitor", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel> call, Throwable t) {
+                Toast.makeText(ScanQRCodeActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // ✅ Bitmap -> Base64 Convert
+    private String convertImageToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+        byte[] imageBytes = baos.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+    // ✅ Validation Method
+    private boolean validateInputs() {
+        String name = etScannedName.getText().toString().trim();
+        String email = etScannedEmail.getText().toString().trim();
+        String address = etScannedAddress.getText().toString().trim();
+        String company = etScannedCompany.getText().toString().trim();
+        String purpose = etScannedPurpose.getText().toString().trim();
+
+        // Name Validation (only alphabets and spaces)
+        if (name.isEmpty()) {
+            etScannedName.setError("Please enter name");
+            etScannedName.requestFocus();
+            return false;
+        }
+        if (!name.matches("^[a-zA-Z ]+$")) {
+            etScannedName.setError("Name cannot contain numbers or special characters");
+            etScannedName.requestFocus();
+            return false;
+        }
+
+        // Mobile Validation (exactly 10 digits)
+        if (email.isEmpty()) {
+            etScannedEmail.setError("Please enter mobile number");
+            etScannedEmail.requestFocus();
+            return false;
+        }
+
+
+        // Address Validation
+        if (address.isEmpty()) {
+            etScannedAddress.setError("Please enter address");
+            etScannedAddress.requestFocus();
+            return false;
+        }
+
+        // Company Validation
+        if (company.isEmpty()) {
+            etScannedCompany.setError("Please enter company");
+            etScannedCompany.requestFocus();
+            return false;
+        }
+
+        // Purpose Validation
+        if (purpose.isEmpty()) {
+            etScannedPurpose.setError("Please enter purpose");
+            etScannedPurpose.requestFocus();
+            return false;
+        }
+
+        // Spinner Validation
+        if (spinnerDepartment.getSelectedItem() == null ||
+                spinnerDepartment.getSelectedItem().toString().isEmpty()) {
+            Toast.makeText(this, "Please select department", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (spinnerEmployee.getSelectedItem() == null ||
+                spinnerEmployee.getSelectedItem().toString().isEmpty()) {
+            Toast.makeText(this, "Please select employee", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Photo Validation
+        if (selectedImageBitmap == null) {
+            Toast.makeText(this, "Please capture photo", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true; // ✅ All fields valid
+    }
+    private void clearForm() {
+        etScannedName.setText("");
+        etScannedEmail.setText("");
+        etScannedAddress.setText("");
+        etScannedCompany.setText("");
+        etScannedPurpose.setText("");
+
+        spinnerDepartment.setSelection(0); // first item select
+        spinnerEmployee.setSelection(0);   // first item select
+
+        imgPhoto.setImageResource(R.drawable.ic_camera); // default camera icon
+        selectedImageBitmap = null;
     }
 
     // ✅ Camera Open Function
