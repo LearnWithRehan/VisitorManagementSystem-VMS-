@@ -2,6 +2,7 @@ package com.example.visitormanagementsys.Report;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -110,6 +111,91 @@ public class InReportActivity extends AppCompatActivity {
         });
     }
 
+//    private void generatePdf(List<InVisitor> visitorList) {
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Generating PDF...");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+//
+//        new Thread(() -> {
+//            try {
+//                File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//                File folder = new File(downloadsDir, "InVisitorReports");
+//                if (!folder.exists()) folder.mkdirs();
+//
+//                String fileName = "InVisitorReport_" + System.currentTimeMillis() + ".pdf";
+//                File file = new File(folder, fileName);
+//
+//                FileOutputStream outputStream = new FileOutputStream(file);
+//                PdfWriter writer = new PdfWriter(outputStream);
+//                PdfDocument pdfDocument = new PdfDocument(writer);
+//                Document document = new Document(pdfDocument, PageSize.A4.rotate());
+//                document.setMargins(20, 20, 20, 20);
+//
+//                Paragraph title = new Paragraph("IN VISITORS REPORT")
+//                        .setFontSize(20)
+//                        .setBold()
+//                        .setTextAlignment(TextAlignment.CENTER)
+//                        .setMarginBottom(20);
+//                document.add(title);
+//
+//                float[] columnWidths = {50, 100, 150, 80, 80, 100, 100, 100, 100, 100};
+//                Table table = new Table(UnitValue.createPercentArray(columnWidths)).setWidth(UnitValue.createPercentValue(100));
+//
+//                String[] headers = {"ID", "Name", "Address", "Mobile", "Department", "Employee", "Purpose", "Company", "Entry Date", "Status"};
+//                for (String header : headers) {
+//                    table.addHeaderCell(new Cell().add(new Paragraph(header))
+//                            .setBackgroundColor(ColorConstants.LIGHT_GRAY)
+//                            .setBold()
+//                            .setTextAlignment(TextAlignment.CENTER));
+//                }
+//
+//                for (InVisitor visitor : visitorList) {
+//                    table.addCell(new Paragraph(visitor.getVisitorId()));
+//                    table.addCell(new Paragraph(visitor.getName()));
+//                    table.addCell(new Paragraph(visitor.getAddress()));
+//                    table.addCell(new Paragraph(visitor.getMobile()));
+//                    table.addCell(new Paragraph(visitor.getDepartment()));
+//                    table.addCell(new Paragraph(visitor.getEmployee()));
+//                    table.addCell(new Paragraph(visitor.getPurpose()));
+//                    table.addCell(new Paragraph(visitor.getCompany()));
+//                    table.addCell(new Paragraph(visitor.getEntryDate()));
+//                    table.addCell(new Paragraph(visitor.getStatus()));
+//                }
+//
+//                document.add(table);
+//                document.close();
+//                outputStream.close();
+//
+//                runOnUiThread(() -> {
+//                    progressDialog.dismiss();
+//                    Toast.makeText(this, "PDF saved: Downloads/InVisitorReports/" + fileName, Toast.LENGTH_LONG).show();
+//                    openPdf(file);
+//                });
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                runOnUiThread(() -> {
+//                    progressDialog.dismiss();
+//                    Toast.makeText(this, "Error generating PDF: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                });
+//            }
+//        }).start();
+//    }
+
+//    private void openPdf(File file) {
+//        try {
+//            Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
+//            Intent intent = new Intent(Intent.ACTION_VIEW);
+//            intent.setDataAndType(uri, "application/pdf");
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            startActivity(intent);
+//        } catch (Exception e) {
+//            Toast.makeText(this, "Cannot open PDF: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+
     private void generatePdf(List<InVisitor> visitorList) {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Generating PDF...");
@@ -118,6 +204,7 @@ public class InReportActivity extends AppCompatActivity {
 
         new Thread(() -> {
             try {
+                // ✅ Folder setup
                 File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 File folder = new File(downloadsDir, "InVisitorReports");
                 if (!folder.exists()) folder.mkdirs();
@@ -125,12 +212,13 @@ public class InReportActivity extends AppCompatActivity {
                 String fileName = "InVisitorReport_" + System.currentTimeMillis() + ".pdf";
                 File file = new File(folder, fileName);
 
-                FileOutputStream outputStream = new FileOutputStream(file);
-                PdfWriter writer = new PdfWriter(outputStream);
+                // ✅ PDF creation (using iText7 / OpenPDF)
+                PdfWriter writer = new PdfWriter(new FileOutputStream(file));
                 PdfDocument pdfDocument = new PdfDocument(writer);
                 Document document = new Document(pdfDocument, PageSize.A4.rotate());
                 document.setMargins(20, 20, 20, 20);
 
+                // ✅ Title
                 Paragraph title = new Paragraph("IN VISITORS REPORT")
                         .setFontSize(20)
                         .setBold()
@@ -138,17 +226,20 @@ public class InReportActivity extends AppCompatActivity {
                         .setMarginBottom(20);
                 document.add(title);
 
+                // ✅ Table setup
                 float[] columnWidths = {50, 100, 150, 80, 80, 100, 100, 100, 100, 100};
-                Table table = new Table(UnitValue.createPercentArray(columnWidths)).setWidth(UnitValue.createPercentValue(100));
+                Table table = new Table(UnitValue.createPercentArray(columnWidths)).useAllAvailableWidth();
 
                 String[] headers = {"ID", "Name", "Address", "Mobile", "Department", "Employee", "Purpose", "Company", "Entry Date", "Status"};
                 for (String header : headers) {
-                    table.addHeaderCell(new Cell().add(new Paragraph(header))
+                    table.addHeaderCell(new Cell()
+                            .add(new Paragraph(header))
                             .setBackgroundColor(ColorConstants.LIGHT_GRAY)
                             .setBold()
                             .setTextAlignment(TextAlignment.CENTER));
                 }
 
+                // ✅ Data rows
                 for (InVisitor visitor : visitorList) {
                     table.addCell(new Paragraph(visitor.getVisitorId()));
                     table.addCell(new Paragraph(visitor.getName()));
@@ -164,7 +255,6 @@ public class InReportActivity extends AppCompatActivity {
 
                 document.add(table);
                 document.close();
-                outputStream.close();
 
                 runOnUiThread(() -> {
                     progressDialog.dismiss();
@@ -189,10 +279,13 @@ public class InReportActivity extends AppCompatActivity {
             intent.setDataAndType(uri, "application/pdf");
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
-        } catch (Exception e) {
-            Toast.makeText(this, "Cannot open PDF: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No PDF viewer found", Toast.LENGTH_LONG).show();
         }
     }
+
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
