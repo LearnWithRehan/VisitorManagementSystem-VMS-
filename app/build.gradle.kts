@@ -72,6 +72,9 @@ dependencies {
 
     //pdf
     implementation ("com.itextpdf:itext7-core:7.2.3");
+    // iText 7 (PDF)
+    implementation ("com.itextpdf:kernel:7.1.15")
+    implementation ("com.itextpdf:layout:7.1.15")
 
     //qrcode generate and scn
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")

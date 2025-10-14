@@ -34,6 +34,19 @@ public class InVisitor {
     @SerializedName("Entry_Date")
     private String entryDate;
 
+    public InVisitor(String visitorId, String name, String mobile, String address, String company, String purpose, String department, String employee, String status, String entryDate) {
+        this.visitorId = visitorId;
+        this.name = name;
+        this.mobile = mobile;
+        this.address = address;
+        this.company = company;
+        this.purpose = purpose;
+        this.department = department;
+        this.employee = employee;
+        this.status = status;
+        this.entryDate = entryDate;
+    }
+
     public String getVisitorId() { return visitorId; }
     public String getName() { return name; }
     public String getMobile() { return mobile; }
