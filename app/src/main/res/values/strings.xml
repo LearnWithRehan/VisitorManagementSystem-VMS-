@@ -1,4 +1,47 @@
 <resources>
     <string name="app_name">VMS</string>
     <string name="visitors_report">Visitors Report</string>
+
+    <string name="about_app_text">
+Visitor Management System (VMS) is an advanced digital solution designed to manage, track, and streamline the complete visitor process inside any organization. The app replaces manual paper entries and provides a smart, secure, and faster workflow for both visitors and employees.
+
+Main Features:
+1. User Registration &amp; Login:
+   Users can register and log in to access all system features securely.
+
+2. Add Visitor:
+   Users can enter full visitor details including name, contact, purpose, and photo.
+   The department list is automatically loaded from department_master, and after selecting a department, all employees working in that department are displayed.
+   Once submitted, an email is sent to the selected employee with complete visitor information. The employee can Accept or Reject the request, and the visitor’s status is shown inside the app.
+
+3. Active Visitors:
+   Displays all visitors who have entered the premises and are currently inside (not checked out yet). This helps monitor live in-premise visitors.
+
+4. History &amp; Reports:
+   Includes two sections:
+   • In Visitors – shows all visitors who entered the factory/organization.
+   • Out Visitors – shows records of visitors who have exited.
+
+5. Profile / Settings:
+   Shows the logged-in user’s profile including username and email.
+
+6. QR Code Generate:
+   Employees can generate a QR code by entering visitor email and employee details.
+   The QR contains complete visitor information and is automatically sent to the visitor’s email address.
+
+7. QR Code Scanner:
+   Security staff can scan visitors’ QR codes during entry.
+   After scanning, the visitor’s full details appear on the screen.
+   The staff can then select the visiting department, choose the employee, capture a photo, and send an email notification just like the Add Visitor process.
+
+8. Notifications:
+   Displays all important updates such as approval, rejection, visitor status changes, and system alerts.
+
+Purpose:
+The goal of VMS is to provide organizations with a fully digital, paperless, and secure visitor management experience. It ensures faster processing, improved security, accurate records, and a smooth workflow for visitors, receptionists, security teams, and employees.
+
+VMS is suitable for factories, industries, offices, hospitals, schools, corporate buildings, and all secured environments.
+</string>
+
+
 </resources>

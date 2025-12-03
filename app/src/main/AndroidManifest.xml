@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- REQUIRED for Android 13+ Notification Permission -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -25,6 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VisitorManagementSys"
         tools:targetApi="31">
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_about"
+            android:exported="false" />
         <activity
             android:name=".SCANQR.ScanQRCodeActivity"
             android:exported="false" />
@@ -77,8 +85,6 @@
             android:name=".MainActivity"
             android:exported="false" />
 
-
-
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -96,8 +102,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-
     </application>
 
 </manifest>

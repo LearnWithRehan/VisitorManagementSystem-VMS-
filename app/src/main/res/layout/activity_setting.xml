@@ -91,6 +91,7 @@
                     app:tint="#2C4D76" />
 
                 <TextView
+                    android:id="@+id/changepassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Change Password"
@@ -115,6 +116,7 @@
                     app:tint="#2C4D76" />
 
                 <TextView
+                    android:id="@+id/tvAboutContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="About App"
@@ -138,6 +140,7 @@
                     app:tint="#2C4D76" />
 
                 <TextView
+                    android:id="@+id/appversion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="App Version"

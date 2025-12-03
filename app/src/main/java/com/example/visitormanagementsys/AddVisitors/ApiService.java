@@ -3,6 +3,7 @@ package com.example.visitormanagementsys.AddVisitors;
 import com.example.visitormanagementsys.Login.ApiResponse;
 import com.example.visitormanagementsys.SCANQR.AddVisitorModelscan;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -33,5 +34,17 @@ public interface ApiService {
             @Field("user_id") int userId,
             @Field("fcm_token") String fcmToken
     );
+
+
+
+    @FormUrlEncoded
+    @POST("save_fcm_token.php")
+    Call<ResponseBody> saveToken(
+            @Field("visitor_id") String visitorId,
+            @Field("fcm_token") String token
+    );
+
+
+
 
 }

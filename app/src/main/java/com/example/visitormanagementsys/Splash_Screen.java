@@ -20,6 +20,7 @@ public class Splash_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+
         progressBar = findViewById(R.id.progressBar);
         ImageView logo = findViewById(R.id.imgLogo);
 
