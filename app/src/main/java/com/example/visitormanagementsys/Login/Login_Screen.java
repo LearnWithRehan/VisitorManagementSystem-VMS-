@@ -93,6 +93,8 @@ public class Login_Screen extends AppCompatActivity {
                         // ✅ Move to Home or Profile
                         startActivity(new Intent(Login_Screen.this, HomeActivity.class));
                         finish();
+                    }else {
+                        Toast.makeText(Login_Screen.this, "Please Check UserId and Password", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {

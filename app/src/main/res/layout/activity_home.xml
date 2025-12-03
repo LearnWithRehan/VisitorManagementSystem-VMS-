@@ -27,16 +27,16 @@
                 android:layout_height="wrap_content"
                 android:text="Visitor Management System"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/imgprofilepic"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:src="@drawable/circle_bg"
-                app:tint="@android:color/white" />
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+               android:src="@drawable/vms"
+                />
         </LinearLayout>
 
         <!-- Buttons Grid -->
@@ -237,18 +237,18 @@
             </LinearLayout>
         </GridLayout>
 
-        <!-- Bottom Button -->
-        <Button
-            android:id="@+id/gateCodeBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Carlingte Code"
-            android:background="@drawable/outline_button"
-            android:textColor="#2C4D76"
-            android:layout_marginTop="24dp"
-            android:padding="12dp"
-            android:textAllCaps="false"
-            android:textSize="16sp" />
+<!--        &lt;!&ndash; Bottom Button &ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/gateCodeBtn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Carlingte Code"-->
+<!--            android:background="@drawable/outline_button"-->
+<!--            android:textColor="#2C4D76"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:padding="12dp"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textSize="16sp" />-->
 
     </LinearLayout>
 </ScrollView>

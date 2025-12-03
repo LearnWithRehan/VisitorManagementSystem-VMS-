@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         qrGeneration = findViewById(R.id.qrGeneration);
         qrScanner = findViewById(R.id.scanqrcode);
         notification = findViewById(R.id.notification);
-        gateCodeBtn = findViewById(R.id.gateCodeBtn);
+      //  gateCodeBtn = findViewById(R.id.gateCodeBtn);
         imgprofilepic = findViewById(R.id.imgprofilepic);
 
         imgprofilepic.setOnClickListener(v -> openScreen(SettingActivity.class));
@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         qrGeneration.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
         qrScanner.setOnClickListener(v -> openScreen(ScanQRCodeActivity.class));
         notification.setOnClickListener(v -> openScreen(NotificationScreen.class));
-        gateCodeBtn.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
+        //gateCodeBtn.setOnClickListener(v -> openScreen(GenerateQRCodeSCreen.class));
 
 
         //SharedPreferences prefs = getSharedPreferences("EmployeePrefs", MODE_PRIVATE);
